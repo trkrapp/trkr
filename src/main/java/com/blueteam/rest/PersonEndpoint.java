@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.OptimisticLockException;
@@ -18,8 +19,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.UriBuilder;
 import javax.xml.ws.WebServiceContext;
 
@@ -34,9 +37,6 @@ public class PersonEndpoint {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager em;
 	
-	@Resource
-	private WebServiceContext context;
-	
 
 	@POST
 	@Consumes("application/json")
@@ -44,7 +44,7 @@ public class PersonEndpoint {
 		em.persist(entity);
 		return Response.created(
 				UriBuilder.fromResource(PersonEndpoint.class)
-						.path(String.valueOf(entity.getId())).build()).build();
+						.path(String.valueOf(entity.getUserName())).build()).build();
 	}
 
 	@DELETE
@@ -59,9 +59,9 @@ public class PersonEndpoint {
 	}
 
 	@GET
-	@Path("/")
+	@Path("/me")
 	@Produces("application/json")
-	public Response fndMe() {
+	public Response fndMe(@Context SecurityContext context) {
 		return findById(context.getUserPrincipal().getName());
 	}
 	
@@ -114,7 +114,7 @@ public class PersonEndpoint {
 		if (userName == null) {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		if (!userName.equals(entity.getId())) {
+		if (!userName.equals(entity.getUserName())) {
 			return Response.status(Status.CONFLICT).entity(entity).build();
 		}
 		if (em.find(Person.class, userName) == null) {

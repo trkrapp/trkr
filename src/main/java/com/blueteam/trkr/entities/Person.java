@@ -1,11 +1,14 @@
 package com.blueteam.trkr.entities;
 
 import java.io.Serializable;
-import java.lang.Float;
-import java.lang.String;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import javax.persistence.*;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -17,18 +20,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Person implements Serializable {
 
 	@Id
-	private Float id;
+	private String userName;
 
 	private String name;
 
 	@OneToMany
-	private List<Person> following = new ArrayList<>();
+	private Set<Person> following = new HashSet<>();
 
 	@OneToMany
-	private List<Review> reviews = new ArrayList<>();
+	private Set<Review> reviews = new HashSet<>();
 
 	@ManyToMany
-	private List<Event> events = new ArrayList<>();
+	private Set<Event> events = new HashSet<>();
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,12 +39,12 @@ public class Person implements Serializable {
 		super();
 	}
 
-	public Float getId() {
-		return this.id;
+	public String getUserName() {
+		return this.userName;
 	}
 
-	public void setId(Float id) {
-		this.id = id;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getName() {
@@ -52,15 +55,15 @@ public class Person implements Serializable {
 		this.name = name;
 	}
 
-	public List<Person> getFollowing() {
+	public Set<Person> getFollowing() {
 		return this.following;
 	}
 
-	public List<Event> getEvents() {
+	public Set<Event> getEvents() {
 		return this.events;
 	}
 
-	public List<Review> getReviews() {
+	public Set<Review> getReviews() {
 		return reviews;
 	}
 
