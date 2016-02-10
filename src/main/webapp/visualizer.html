@@ -206,13 +206,15 @@ function fillMap(map){
           anchor: new google.maps.Point(0, 32)
         };
 
+  var flags = [newflag, plannedflag, doneflag];
 
   for (var i = 0; i < locations.length; i++) {
       var location = locations[i];
+      var flag = flags[Math.floor(Math.random() * 3)];
       var marker = new google.maps.Marker({
         position: {lat: location['gpsLatitute'], lng: location['gpsLongitude']},
         map: map,
-        icon: newflag,
+        icon: flag,
       });
     }
                  
