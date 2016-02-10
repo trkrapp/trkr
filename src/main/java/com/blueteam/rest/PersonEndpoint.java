@@ -2,6 +2,7 @@ package com.blueteam.rest;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -20,6 +21,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
+import javax.xml.ws.WebServiceContext;
+
 import com.blueteam.trkr.entities.Person;
 
 /**
@@ -30,6 +33,10 @@ import com.blueteam.trkr.entities.Person;
 public class PersonEndpoint {
 	@PersistenceContext(unitName = "primary")
 	private EntityManager em;
+	
+	@Resource
+	private WebServiceContext context;
+	
 
 	@POST
 	@Consumes("application/json")
@@ -41,9 +48,9 @@ public class PersonEndpoint {
 	}
 
 	@DELETE
-	@Path("/{id:[0-9][0-9]*}")
-	public Response deleteById(@PathParam("id") Float id) {
-		Person entity = em.find(Person.class, id);
+	@Path("/{userName}")
+	public Response deleteByUserName(@PathParam("userName") String userName) {
+		Person entity = em.find(Person.class, userName);
 		if (entity == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -52,14 +59,21 @@ public class PersonEndpoint {
 	}
 
 	@GET
-	@Path("/{id:[0-9][0-9]*}")
+	@Path("/")
 	@Produces("application/json")
-	public Response findById(@PathParam("id") Float id) {
+	public Response fndMe() {
+		return findById(context.getUserPrincipal().getName());
+	}
+	
+	@GET
+	@Path("/{userName}")
+	@Produces("application/json")
+	public Response findById(@PathParam("userName") String userName) {
 		TypedQuery<Person> findByIdQuery = em
 				.createQuery(
-						"SELECT DISTINCT p FROM Person p LEFT JOIN FETCH p.following LEFT JOIN FETCH p.reviews LEFT JOIN FETCH p.events WHERE p.id = :entityId ORDER BY p.id",
+						"SELECT DISTINCT p FROM Person p LEFT JOIN FETCH p.following LEFT JOIN FETCH p.reviews LEFT JOIN FETCH p.events WHERE p.userName = :entityId ORDER BY p.userName",
 						Person.class);
-		findByIdQuery.setParameter("entityId", id);
+		findByIdQuery.setParameter("entityId", userName);
 		Person entity;
 		try {
 			entity = findByIdQuery.getSingleResult();
@@ -78,7 +92,7 @@ public class PersonEndpoint {
 			@QueryParam("max") Integer maxResult) {
 		TypedQuery<Person> findAllQuery = em
 				.createQuery(
-						"SELECT DISTINCT p FROM Person p LEFT JOIN FETCH p.following LEFT JOIN FETCH p.reviews LEFT JOIN FETCH p.events ORDER BY p.id",
+						"SELECT DISTINCT p FROM Person p LEFT JOIN FETCH p.following LEFT JOIN FETCH p.reviews LEFT JOIN FETCH p.events ORDER BY p.userName",
 						Person.class);
 		if (startPosition != null) {
 			findAllQuery.setFirstResult(startPosition);
@@ -91,19 +105,19 @@ public class PersonEndpoint {
 	}
 
 	@PUT
-	@Path("/{id:[0-9][0-9]*}")
+	@Path("/{userName}")
 	@Consumes("application/json")
-	public Response update(@PathParam("id") Float id, Person entity) {
+	public Response update(@PathParam("userName") String userName, Person entity) {
 		if (entity == null) {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		if (id == null) {
+		if (userName == null) {
 			return Response.status(Status.BAD_REQUEST).build();
 		}
-		if (!id.equals(entity.getId())) {
+		if (!userName.equals(entity.getId())) {
 			return Response.status(Status.CONFLICT).entity(entity).build();
 		}
-		if (em.find(Person.class, id) == null) {
+		if (em.find(Person.class, userName) == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 		try {
