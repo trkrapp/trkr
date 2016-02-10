@@ -1,0 +1,10 @@
+{
+  "realm": "trkr",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArvtl059FdnL06A+y1lztScP8f1Pb+WBJqwE5pCBAxJ2pDnFaz7i3JOwIaNRE9iN/7QRqZDtiTGi6lz/snFRp5YiQEKi/hk3Bf5x1N/IC0r9+iWqZxA+cy5rEfrFk1XG3aEhOVUZ007gMdGtzryN67rZXgdkVtXZTWZtAhtbGUoAIllALormizr7jzCJEzEqJnitA2zKkctREe9OvYLn/pAZ7F31tXRzwUUKtbL6QiVLrn3kiqLVfXCKe9K7MfD2/vcrqJQk+4LKtquTOk/NLqEage2KjcQUtkcK+18vrmFycIft1YM8yF4GcxOKuImFqrUV3dRTGAB6SAq6LOjYeIQIDAQAB",
+  "auth-server-url": "http://localhost:8180/auth",
+  "ssl-required": "external",
+  "resource": "trkrWeb",
+  "credentials": {
+    "secret": "fc51b580-cf92-461a-958a-71be338df9aa"
+  }
+}
