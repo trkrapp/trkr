@@ -5,50 +5,52 @@ import java.lang.Float;
 import java.lang.String;
 import java.util.Date;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: Event
  *
  */
 @Entity
+@XmlRootElement
 public class Event implements Serializable {
 
-    @Id
-    private Float id;
-    
-    private String name;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
-    
-    private static final long serialVersionUID = 1L;
+	@Id
+	private Float id;
 
-    public Event() {
-        super();
-    }
+	private String name;
 
-    public Float getId() {
-        return this.id;
-    }
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
 
-    public void setId(Float id) {
-        this.id = id;
-    }
+	private static final long serialVersionUID = 1L;
 
-    public String getName() {
-        return this.name;
-    }
+	public Event() {
+		super();
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Float getId() {
+		return this.id;
+	}
 
-    public Date getDate() {
-        return this.date;
-    }
+	public void setId(Float id) {
+		this.id = id;
+	}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getDate() {
+		return this.date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 }

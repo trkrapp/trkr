@@ -8,77 +8,76 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: Activity
  *
  */
 @Entity
-
+@XmlRootElement
 public class Activity implements Serializable {
 
-    @Id
-    private Float id;
-    
-    
-    @ManyToOne
-    private Location location;
-    
-    @ManyToMany
-    private List<Event> events = new ArrayList<>();
-    
-    
-    private Integer dificulty;
-    private String name;
-    private String description;
-    private static final long serialVersionUID = 1L;
+	@Id
+	private Float id;
 
-    public Activity() {
-        super();
-    }
+	@ManyToOne
+	private Location location;
 
-    public Float getId() {
-        return this.id;
-    }
+	@ManyToMany
+	private List<Event> events = new ArrayList<>();
 
-    public void setId(Float id) {
-        this.id = id;
-    }
+	private Integer dificulty;
+	private String name;
+	private String description;
+	private static final long serialVersionUID = 1L;
 
-    public Location getLocation() {
-        return this.location;
-    }
+	public Activity() {
+		super();
+	}
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
+	public Float getId() {
+		return this.id;
+	}
 
-    public List<Event> getEvents() {
-        return this.events;
-    }
+	public void setId(Float id) {
+		this.id = id;
+	}
 
-    public Integer getDificulty() {
-        return this.dificulty;
-    }
+	public Location getLocation() {
+		return this.location;
+	}
 
-    public void setDificulty(Integer dificulty) {
-        this.dificulty = dificulty;
-    }
+	public void setLocation(Location location) {
+		this.location = location;
+	}
 
-    public String getName() {
-        return this.name;
-    }
+	public List<Event> getEvents() {
+		return this.events;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Integer getDificulty() {
+		return this.dificulty;
+	}
 
-    public String getDescription() {
-        return this.description;
-    }
+	public void setDificulty(Integer dificulty) {
+		this.dificulty = dificulty;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }

@@ -6,63 +6,62 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: Person
  *
  */
 @Entity
-
+@XmlRootElement
 public class Person implements Serializable {
 
-    @Id
-    private Float id;
+	@Id
+	private Float id;
 
-    private String name;
-    
-    @OneToMany
-    private List<Person> following = new ArrayList<>();
-    
-    
-    @OneToMany
-    private List<Review> reviews = new ArrayList<>();
-    
-    
-    @ManyToMany
-    private List<Event> events = new ArrayList<>();
-    
-    private static final long serialVersionUID = 1L;
+	private String name;
 
-    public Person() {
-        super();
-    }
+	@OneToMany
+	private List<Person> following = new ArrayList<>();
 
-    public Float getId() {
-        return this.id;
-    }
+	@OneToMany
+	private List<Review> reviews = new ArrayList<>();
 
-    public void setId(Float id) {
-        this.id = id;
-    }
+	@ManyToMany
+	private List<Event> events = new ArrayList<>();
 
-    public String getName() {
-        return this.name;
-    }
+	private static final long serialVersionUID = 1L;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Person() {
+		super();
+	}
 
-    public List<Person> getFollowing() {
-        return this.following;
-    }
+	public Float getId() {
+		return this.id;
+	}
 
-    public List<Event> getEvents() {
-        return this.events;
-    }
-    
-    public List<Review> getReviews() {
-        return reviews;
-    }
+	public void setId(Float id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Person> getFollowing() {
+		return this.following;
+	}
+
+	public List<Event> getEvents() {
+		return this.events;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
 
 }
