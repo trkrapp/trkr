@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Activity implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Float id;
 
 	@ManyToOne

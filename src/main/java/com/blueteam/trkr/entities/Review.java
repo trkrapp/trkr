@@ -27,6 +27,10 @@ public class Review implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
+	
+	private Integer rating;
+	
+	private String comment;
 
 	private static final long serialVersionUID = 1L;
 
@@ -60,6 +64,22 @@ public class Review implements Serializable {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public Integer getRating() {
+		return rating;
 	}
 
 }
