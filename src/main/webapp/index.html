@@ -177,35 +177,28 @@
 </nav>
 
 <!-- LIST ITEMS -->
-<div class="container-fluid conatiner-cards-pf container-pf-alt-nav-pf-vertical-alt">
-  <div class="list-view-pf-main-info">
-  <div class="list-view-pf-left">
-    <span class="fa fa-industry list-view-pf-icon-sm"></span>
-  </div>
-  <div class="list-view-pf-body">
-    <div class="list-view-pf-description">
-      <div class="list-group-item-heading">
-        Event One
-      </div>
-      <div class="list-group-item-text">
-        The following snippet of text is <a href="#">rendered as link text</a>.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.
-      </div>
-    </div>
-    <div class="list-view-pf-additional-info">
-      <div class="list-view-pf-additional-info-item">
-        <img src="http://placehold.it/60x60" alt="placeholder image">
-      </div>
-      <div class="list-view-pf-additional-info-item">
-        <span class="pficon pficon-user"></span>
-        <strong>8</strong> Friends have completed this activity.
-      </div>
-      <div class="list-view-pf-additional-info-item list-view-pf-additional-info-item-stacked">
-        <strong>35%</strong> Service Two
-      </div>
-    </div>
-  </div>
+<div class="container-fluid conatiner-cards-pf container-pf-alt-nav-pf-vertical-alt" id="pokus">
+  
 </div>
-</div>
+<script type="text/javascript">
+$.ajax({
+    url: "rest/events",
+    cache: false,
+    success: function(data) {
+    	for (var i = 0; i < data.length; i++) {
+    		$('#pokus').append(getOneRow(data[i].id, data[i].name, data[i].date));
+            }
+        $('#test').empty().append(data);
+    },
+    error: function(error) {
+        alert("error");
+        //console.log("error updating table -" + error.status);
+    }
+});
+
+function getOneRow(id, name, date){
+	return "<div class='list-view-pf-main-info'><div class='list-view-pf-left'>"+id+"</div><div class='list-view-pf-body'>"+name+"</div></div>";
+}
+</script>
 </body>
 </html>
