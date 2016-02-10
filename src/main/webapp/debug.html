@@ -1,0 +1,15 @@
+<body>
+Current user: <a id="user"></a>
+<script type="text/javascript">
+alert("I am an alert box!");
+document.getElementById("user").innerHTML = "before";
+xhttp.onreadystatechange = function() {
+if (xhttp.readyState == 4 && xhttp.status == 200) {
+	document.getElementById("user").innerHTML = xhttp.responseText;
+ } else {
+	 document.getElementById("user").innerHTML = "test";
+);
+xhttp.open("GET", "rest/people", true);
+xhttp.send();
+</script>
+</body>
