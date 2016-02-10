@@ -1,4 +1,15 @@
-INSERT INTO Location (id , gpsLatitute , gpsLongitude , name , locationType) VALUES (0, 12.32423423423, 13.522432, 'My first moutain', 'MOUTAIN');
-INSERT INTO Location (id , gpsLatitute , gpsLongitude , name , locationType) VALUES (1, 12.32423423423, 13.522432, 'My second moutain', 'MOUTAIN');
-INSERT INTO Location (id , gpsLatitute , gpsLongitude , name , locationType) VALUES (2, 12.32423423423, 13.522432, 'My third moutain', 'MOUTAIN');
-INSERT INTO Location (id , gpsLatitute , gpsLongitude , name , locationType) VALUES (3, 12.32423423423, 13.522432, 'My forth moutain', 'MOUTAIN');
+INSERT INTO Location (id , gpsLatitute , gpsLongitude , name , locationType) SELECT * FROM CSVREAD('classpath:ScotlandPeaks.csv')
+INSERT INTO Person (id, name) VALUES (1, 'Cat')
+INSERT INTO Person (id, name) VALUES (2, 'Nick')
+INSERT INTO Person (id, name) VALUES (3, 'Mickael')
+INSERT INTO Person (id, name) VALUES (4, 'Radim')
+INSERT INTO Person (id, name) VALUES (5, 'Rafael')
+INSERT INTO Person (id, name) VALUES (6, 'Pete')
+INSERT INTO Activity (id, description, dificulty, name, location_id) SELECT Number, 'default description', 1, 'Hike', Number FROM CSVREAD('classpath:ScotlandPeaks.csv')
+INSERT INTO Event (id, date, name) VALUES (1, '2015-08-08', 'test event')
+INSERT INTO Person_event (person_id, events_id) VALUES (1, 1)
+INSERT INTO Person_event (person_id, events_id) VALUES (2, 1)
+INSERT INTO Person_event (person_id, events_id) VALUES (4, 1)
+INSERT INTO Activity_event (activity_id, events_id) VALUES (3, 1)
+INSERT INTO Review (id, date, activity_id, person_id, comment, rating) VALUES (1, '2015-08-08', 1, 2, 'comment by Nick', 5)
+INSERT INTO Review (id, date, activity_id, person_id, comment, rating) VALUES (2, '2015-08-08', 1, 5, 'comment by Raf', 3)
