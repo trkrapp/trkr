@@ -1,10 +1,8 @@
 {
   "realm": "trkr",
-  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArvtl059FdnL06A+y1lztScP8f1Pb+WBJqwE5pCBAxJ2pDnFaz7i3JOwIaNRE9iN/7QRqZDtiTGi6lz/snFRp5YiQEKi/hk3Bf5x1N/IC0r9+iWqZxA+cy5rEfrFk1XG3aEhOVUZ007gMdGtzryN67rZXgdkVtXZTWZtAhtbGUoAIllALormizr7jzCJEzEqJnitA2zKkctREe9OvYLn/pAZ7F31tXRzwUUKtbL6QiVLrn3kiqLVfXCKe9K7MfD2/vcrqJQk+4LKtquTOk/NLqEage2KjcQUtkcK+18vrmFycIft1YM8yF4GcxOKuImFqrUV3dRTGAB6SAq6LOjYeIQIDAQAB",
-  "auth-server-url": "http://localhost:8180/auth",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh7BBTjtDR1AP6sM8ka7DEX0srNImtRgCU15VDI7+vY73SzZtqh8190Cu+d3pc9rgkNyBsSKt3DSNqpw1kcorpSKCclNQkByPrhE86KQDWRUWNZMjYtJDVRDvz/F2m/4iiXjHpvNTwR2zDmBx4TDbuEMjVCbBCuu7AbVuQjoIFJDjNM+CSrdmQ696/U3wk/Si1IqxjOmGvKQmBByC2kWbvJqwONM+XqPT2n8pyavFGtk7+lPLj2pwdASjXCAFKV9zsAsYEVPMeYR9tFyt8nl0Lo92rDKLfuRBRgLHwVluQj2Rp+05UZwaxRhWR5chf+Db1ecvjVWsuTjiF9rY5GnUyQIDAQAB",
+  "auth-server-url": "https://trakr-jbossuxd.rhcloud.com/auth",
   "ssl-required": "external",
-  "resource": "trkrWeb",
-  "credentials": {
-    "secret": "fc51b580-cf92-461a-958a-71be338df9aa"
-  }
+  "resource": "trkr-web",
+  "public-client": true
 }
